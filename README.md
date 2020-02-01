@@ -36,3 +36,6 @@ The whole voice flow is made using the resources provided by Avaya and available
 
 This hack is a contestant in the **education** category
 
+
+## More Information
+https://github.com/jpmoralesingenian/irbidsapi
