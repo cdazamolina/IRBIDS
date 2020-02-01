@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="main" style="padding-bottom: 8em">
+    <div class="row justify-content-center align-items-center" style="margin-bottom:15px">        
+        <div class="col-xs-12 col-lg-12 col-md-12 text-center icon rubikTitle texto-borde" style="font-size:3em">
+            <a href="#"><img class="round" src="~/css/images/IRBIDS.png" width="100" height="100" /></a>  I read but I don't speak
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center" style="margin-bottom:15px">        
+        <div class="col-xs-12 col-lg-12 col-md-12 text-center icon rubikTitle" style="color:black">
+            Look at your progress!
+        </div>
+    </div>
+    <ul class="layer">
+        <li class="content-w3ls content-bottom">
+            <div class="round" style="padding:15px; background-color:rgb(246, 248, 181)">
+                your phone number:
+                <br />
+                <input id="buscar" type="text" placeholder="Search..">
+                Click on your number phone to get details
+                <div style="margin-top:5px">
+                    <table id="tabla" style="width:100%">
+                        <thead>
+                            <tr class="rubikTitle">
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    YOUR PHONE
+                                </th>
+                                <th class="text-center">
+                                    YOUR SCORE
+                                </th>
+                                <th class="text-center">
+                                    ATTEMPTS
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @{ int i = 1;
+                                @foreach (var user in Model.User)
+                                {
+                            <tr class="rubik">
+                                <td class="text-center">
+                                    @i
+                                </td>
+                                <td class="text-center">
+                                    <a href="/Home/GetAttempt?Id=@user.Id" style="color:black">
+                                        @user.Ani
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    @(user.Score * 10)
+                                </td>
+
+                                <td class="text-center">
+                                    @user.AttemptCount
+                                </td>
+                            </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+<script type="text/javascript">
+        btab('buscar', 'tabla'); // Iniciamos la funcion...
+</script>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="main" style="padding-bottom: 8em">
+    <div class="row justify-content-center align-items-center" style="margin-bottom:15px">
+        <div class="col-xs-12 col-lg-12 col-md-12 text-center icon rubikTitle" style="font-size:3em">
+            I read but I don't speak
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center" style="margin-bottom:15px">
+
+        <div class="text-center icon" style="margin:10px">
+            <a href="#"><img class="round" src="~/css/images/IRBIDS.png" width="180" height="180" /></a>
+        </div>
+    </div>
+    <ul class="layer">
+        <li class="content-w3ls content-bottom">
+            <div class="round" style="padding:15px; background-color:rgb(246, 248, 181)">
+                <table id="tabla" style="width:100%">
+                    <thead>
+                        <tr class="rubikTitle">
+                            <th class="text-center">
+                                DATE
+                            </th>
+                            <th class="text-center">
+                                WE SAID
+                            </th>
+                            <th class="text-center">
+                                YOU SAID
+                            </th>
+                            <th class="text-center">
+                                CONFIDENCE
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 1;
+                            @foreach (var attempt in Model.Attempt)
+                            {
+                                int userid = attempt.UserId;
+                                if ((int)ViewData["UserId"] == userid)
+                                {
+                                    Word word = null;
+
+                                    @foreach (var wordRead in Model.Word)
+                                    {
+                                        if (wordRead.Id == attempt.WordId)
+                                        {
+                                            word = wordRead;
+                                        }
+                                    }
+                                    <tr class="rubik">
+                                        <th class="text-center">
+                                            @attempt.Created
+                                        </th>
+                                        <th class="text-center">
+                                            @if (word != null)
+                                            {
+                                                <audio src="@word.AudioUrl" controls="controls" type="audio/mpeg">
+                                                </audio>
+                                            }
+                                        </th>
+                                        <th class="text-center">
+                                            <audio src="@attempt.RecordedUrl" controls="controls" type="audio/mpeg">
+                                            </audio>
+                                        </th>
+                                        <th class="text-center">
+                                            @(@attempt.Confidence * 10)
+                                        </th>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </li>
+    </ul>
+</section>
+<script type="text/javascript">
+        btab('buscar', 'tabla'); // Iniciamos la funcion...
+</script>
