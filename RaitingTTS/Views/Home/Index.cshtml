@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "IRBIDS";
 }
 <section class="main" style="padding-bottom: 8em">
     <div class="row justify-content-center align-items-center" style="margin-bottom:15px">        
@@ -18,6 +18,7 @@
                 your phone number:
                 <br />
                 <input id="buscar" type="text" placeholder="Search..">
+                <br />
                 Click on your number phone to get details
                 <div style="margin-top:5px">
                     <table id="tabla" style="width:100%">
@@ -41,23 +42,23 @@
                             @{ int i = 1;
                                 @foreach (var user in Model.User)
                                 {
-                            <tr class="rubik">
-                                <td class="text-center">
-                                    @i
-                                </td>
-                                <td class="text-center">
-                                    <a href="/Home/GetAttempt?Id=@user.Id" style="color:black">
-                                        @user.Ani
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    @(user.Score * 10)
-                                </td>
-
-                                <td class="text-center">
-                                    @user.AttemptCount
-                                </td>
-                            </tr>
+                            
+                                <tr class="rubik">
+                                    <td class="text-center">
+                                        @i
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/Home/GetAttempt?Id=@user.Id" style="color:black">
+                                            <u>@user.Ani</u>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        @(user.Score * 10)
+                                    </td>
+                                    <td class="text-center">
+                                        @user.AttemptCount
+                                    </td>
+                                </tr>
                                     i++;
                                 }
                             }
